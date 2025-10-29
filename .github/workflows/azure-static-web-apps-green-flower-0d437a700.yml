@@ -9,6 +9,11 @@ on:
     branches:
       - master
 
+- task: AzureStaticWebApp@0
+  inputs:
+    # Set to true to skip the automatic build step
+    skip_app_build: true
+
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -56,5 +61,6 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
+
 
 
